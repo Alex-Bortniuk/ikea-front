@@ -9,6 +9,7 @@
     // const catalogList = document.querySelector(".catalog-list");
     const subCatalog = document.querySelector(".subcatalog");
     const subCatalogHeader = document.querySelector(".subcatalog-header");
+    const btnReturn = document.querySelector(".btn-return");
 
 
 
@@ -20,7 +21,7 @@
     function closeMenu(e) {
         catalog.classList.remove("open");
         overlay.classList.remove("active");
-        subCatalog.classList.remove("subopen");
+        closeSubmenu();
     }
 
 
@@ -33,9 +34,16 @@
         }
     }
 
+
+    function closeSubmenu(e) {
+        subCatalog.classList.remove("subopen");
+    }
+
     btnBurger.addEventListener("click", openMenu);
     btnClose.addEventListener("click", closeMenu);
     catalog.addEventListener("click", openSubMenu);
+    btnReturn.addEventListener("click", closeSubmenu);
+
 
 
 
