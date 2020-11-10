@@ -1,3 +1,4 @@
+import {getData} from "./getData.js";
 const wishList = ["idd005", "idd006", "idd007", "idd008"];
 
 const cartList = [
@@ -18,24 +19,48 @@ const cartList = [
 
 const loadData = () => {
     if(location.search) {
+
         const search = decodeURI(location.search);
-        console.log(search);
+        const prop = search.split("=")[0].slice(1);
+        const value = search.split("=")[1];
+        
+        switch (prop) {
+            case "s":
+                getData.search(value, (data) => {
+                    console.log(data);
+                })
+                break;
 
-        const prop = search.split("=");
-        const value = search.split("=");
-        console.log("value:", value)
+            case "wishlist":
+                getData.whishList(wishList, (data) => console.log(data));
+                break;  
 
-        console.log("prop:", prop);  
+            default:
+                getData.category(prop, value, (data) => {
+                    console.log(data);
+                })
+                break;
+        }
+
     }
 
     if(location.hash) {
-
+        getData.item(location.hash.substring(1), (data) => {
+            console.log(data);
+        });
     }
 
     if(location.pathname.includes('cart')) {
-
+        getData.cart(cartList, (data) => {
+            console.log(data);  
+        })
     }
-   
+
+    getData.catalog((data) => {
+        console.log(data);
+    });
+
+
 }
 
 export {loadData};
