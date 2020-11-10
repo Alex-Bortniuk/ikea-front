@@ -42,6 +42,10 @@ const loadData = () => {
                 break;
         }
 
+        // getData.subCatalog(value, (data) => {
+        //     console.log(data);
+        // })
+
     }
 
     if(location.hash) {
@@ -56,9 +60,13 @@ const loadData = () => {
         })
     }
 
-    getData.catalog((data) => {
-        console.log(data);
-    });
+    // getData.catalog((data) => {
+    //     console.log(data);
+    // });  
+
+    // getData.subCatalog("Освещение", (data) => {
+    //     console.log(data);
+    // })
 
 
 }

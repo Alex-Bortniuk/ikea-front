@@ -64,10 +64,8 @@ const getData = {
             const result = data.reduce((arr, item) => {
                 if (!arr.includes(item.category)) {
                     arr.push(item.category);
-                    
                 }
                 return arr;
-                
             }, [])
             callback(result);
         })
@@ -75,7 +73,14 @@ const getData = {
 
     subCatalog(value, callback) {
         this.get((data) => {
-            const result = data.filter((item) => item.category === value);
+            const result = data
+                // .filter((item) => item.category === value)
+                .reduce((arr, item) => {
+                    if (!arr.includes(item.subcategory) && item.category === value) {
+                        arr.push(item.subcategory);
+                    }
+                    return arr;
+                }, []);
             callback(result);
         })
     }
